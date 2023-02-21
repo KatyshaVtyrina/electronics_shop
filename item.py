@@ -23,6 +23,11 @@ class Item:
             for row in reader:
                 cls(name=row['name'], price=int(row['price']), quantity=int(row['quantity']))
 
+    @staticmethod
+    def is_integer(numb: int or float) -> bool:
+        """Проверяет, является ли число целым."""
+        return int(numb) == float(numb)
+
     @property
     def name(self) -> str:
         """Возвращает название товара"""
