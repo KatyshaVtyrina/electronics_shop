@@ -21,12 +21,22 @@ class Item:
         with open(cls.path_to_file_csv, 'r', encoding='cp1251') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                cls(name=row['name'], price=int(row['price']), quantity=int(row['quantity']))
+                cls(name=row['name'], price=cls.get_int(row['price']), quantity=cls.get_int(row['quantity']))
 
     @staticmethod
-    def is_integer(numb: int or float) -> bool:
+    def is_integer(numb: int or float or str) -> bool:
         """Проверяет, является ли число целым."""
-        return int(numb) == float(numb)
+        if type(numb) is str:
+            if '.' in numb:
+                numb = float(numb)
+                return numb == int(numb)
+            return True
+        return numb == int(numb)
+
+    @staticmethod
+    def get_int(numb: str) -> int:
+        """Возвращает int"""
+        return int(float(numb))
 
     @property
     def name(self) -> str:
