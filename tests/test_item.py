@@ -3,7 +3,11 @@ from item import Item
 
 
 def test___repr__(item1):
-    assert Item.__repr__(item1) == "Item('name'=Смартфон, 'price'=10000, 'quantity'=20)"
+    assert Item.__repr__(item1) == "Item(Смартфон, 10000, 20)"
+
+
+def test__str__(item2):
+    assert Item.__str__(item2) == "Ноутбук"
 
 
 def test_calculate_total_price(item1):
