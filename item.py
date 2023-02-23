@@ -7,7 +7,7 @@ class Item:
     all = []
 
     def __init__(self, name, price, quantity):
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         Item.all.append(self)
