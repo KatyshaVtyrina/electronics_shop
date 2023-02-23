@@ -13,7 +13,10 @@ class Item:
         Item.all.append(self)
 
     def __repr__(self):
-        return f"Item('name'={self.name}, 'price'={self.price}, 'quantity'={self.quantity})"
+        return f"Item({self.name}, {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return f"{self.name}"
 
     @classmethod
     def instantiate_from_csv(cls) -> None:
