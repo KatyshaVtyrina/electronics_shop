@@ -1,5 +1,5 @@
 import pytest
-from item import Item
+from shop.item import Item
 
 
 @pytest.fixture

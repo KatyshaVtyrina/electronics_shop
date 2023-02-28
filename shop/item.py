@@ -2,7 +2,7 @@ import csv
 
 
 class Item:
-    path_to_file_csv = 'data/items.csv'
+    path_to_file_csv = '../data/items.csv'
     pay_rate = 0.85
     all = []
 
