@@ -69,3 +69,13 @@ def test_exception_name(item1):
     with pytest.raises(Exception):
         item1.name = 'Длина наименования товара превышает 10 символов.'
 
+
+def test_add_(item1, item2):
+    """Ожидается сложение экземпляров Item """
+    assert item1 + item2 == 25
+
+
+def test_value_error_add(item1: Item):
+    """Ожидается исключение ValueError при сложении Item с экземплярами не Item класса"""
+    with pytest.raises(ValueError):
+        item1 + 10

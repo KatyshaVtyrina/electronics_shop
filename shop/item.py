@@ -18,6 +18,12 @@ class Item:
     def __str__(self):
         return f"{self.name}"
 
+    def __add__(self, other) -> int:
+        """Складывает количество товара, если второй объект Item, если нет, выбрасывает исключение"""
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        raise ValueError('Второй объект не Item.')
+
     @classmethod
     def instantiate_from_csv(cls) -> None:
         """Считывает данные из csv-файла и создает экземпляры класса, инициализируя их данными из файла"""
