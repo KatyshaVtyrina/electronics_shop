@@ -2,7 +2,7 @@ import csv
 
 
 class Item:
-    path_to_file_csv = 'data/items.csv'
+    path_to_file_csv = '../data/items.csv'
     pay_rate = 0.85
     all = []
 
@@ -17,6 +17,12 @@ class Item:
 
     def __str__(self):
         return f"{self.name}"
+
+    def __add__(self, other) -> int:
+        """Складывает количество товара, если второй объект Item, если нет, выбрасывает исключение"""
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        raise ValueError('Второй объект не Item.')
 
     @classmethod
     def instantiate_from_csv(cls) -> None:
