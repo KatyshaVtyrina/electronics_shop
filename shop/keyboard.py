@@ -2,14 +2,9 @@ from shop.item import Item
 
 
 class MixinKeyBoard:
-    """Хранит и изменяет раскладки клавиатуры"""
-
-    def __init__(self, name, price, quantity, language='EN'):
-        super().__init__(name, price, quantity)
-        if language.upper() in ['EN', 'RU']:
-            self.__language = language.upper()
-        else:
-            raise ValueError('Нет такого языка в раскладке')
+    """Хранит и изменяет раскладку клавиатуры"""
+    def __init__(self):
+        self.__language = "EN"
 
     @property
     def language(self) -> str:
@@ -24,7 +19,12 @@ class MixinKeyBoard:
             self.__language = "EN"
 
 
-class KeyBoard(MixinKeyBoard, Item):
+class KeyBoard(Item, MixinKeyBoard):
+    """Родительский класс - Item
+       миксин-класс - MixinKeyBoard"""
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+        MixinKeyBoard.__init__(self)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.price}, {self.quantity}, {self.language})"

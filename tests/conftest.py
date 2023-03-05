@@ -32,13 +32,3 @@ def phone3():
 @pytest.fixture
 def keyboard1():
     return KeyBoard('KD87A', 9600, 5)
-
-
-@pytest.fixture
-def keyboard2():
-    return KeyBoard('KD87A', 9600, 5, "EN")
-
-
-@pytest.fixture
-def keyboard3():
-    return KeyBoard('KD87A', 9600, 5, "ru")
