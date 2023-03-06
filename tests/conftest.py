@@ -1,5 +1,6 @@
 import pytest
 from shop.item import Item
+from shop.keyboard import KeyBoard
 from shop.phone import Phone
 
 
@@ -26,3 +27,8 @@ def phone2():
 @pytest.fixture
 def phone3():
     return Phone("iPhone 7", 30_000, 10, 0)
+
+
+@pytest.fixture
+def keyboard1():
+    return KeyBoard('KD87A', 9600, 5)
