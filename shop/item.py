@@ -1,8 +1,9 @@
 import csv
+from shop.errors import InstantiateCSVError
 
 
 class Item:
-    path_to_file_csv = '../data/items.csv'
+    PATH_TO_FILE_CSV = '../data/items.csv'
     pay_rate = 0.85
     all = []
 
@@ -27,10 +28,18 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls) -> None:
         """Считывает данные из csv-файла и создает экземпляры класса, инициализируя их данными из файла"""
-        with open(cls.path_to_file_csv, 'r', encoding='cp1251') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                cls(name=row['name'], price=cls.get_int(row['price']), quantity=cls.get_int(row['quantity']))
+        try:
+            with open(cls.PATH_TO_FILE_CSV, 'r', encoding='cp1251') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if list(row.keys()) == ['name', 'price', 'quantity']:
+                        cls(name=row['name'], price=cls.get_int(row['price']), quantity=cls.get_int(row['quantity']))
+                    else:
+                        raise InstantiateCSVError
+        except FileNotFoundError:
+            print(f"По указанному пути '{cls.PATH_TO_FILE_CSV}' файл item.csv отсутствует")
+        except InstantiateCSVError:
+            print("Файл item.csv поврежден")
 
     @staticmethod
     def is_integer(numb: int or float or str) -> bool:
