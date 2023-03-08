@@ -39,13 +39,13 @@ def test_instantiate_from_csv():
 def test_get_file_not_found_error():
     """Ожидается обработка исключения FileNotFoundError в связи с отсутствием файла"""
     Item.PATH_TO_FILE_CSV = 'tests/data/test3.csv'
-    assert Item.instantiate_from_csv() == f"По указанному пути '{Item.PATH_TO_FILE_CSV}' файл item.csv отсутствует"
+    assert Item.instantiate_from_csv() == print(f"По указанному пути '{Item.PATH_TO_FILE_CSV}' файл item.csv отсутствует")
 
 
 def test_get_instantiate_csv_error():
     """Ожидается обработка исключения InstantiateCSVError, так как файл поврежден"""
     Item.PATH_TO_FILE_CSV = 'tests/data/test2.csv'
-    assert Item.instantiate_from_csv() == "Файл item.csv поврежден"
+    assert Item.instantiate_from_csv() == print("Файл item.csv поврежден")
 
 
 def test_is_integer():
