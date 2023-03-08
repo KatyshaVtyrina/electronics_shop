@@ -27,13 +27,25 @@ def test_apply_discount(item1, item2):
 def test_instantiate_from_csv():
     """Ожидается инициализация экземпляра Item из файла .csv"""
     Item.all = []
-    Item.path_to_file_csv = 'tests/test.csv'
+    Item.PATH_TO_FILE_CSV = 'tests/data/test.csv'
     Item.instantiate_from_csv()
     item = Item.all
     assert len(item) == 3
     assert item[0].name == 'Смартфон'
     assert item[1].price == 300
     assert item[2].quantity == 9
+
+
+def test_get_file_not_found_error():
+    """Ожидается обработка исключения FileNotFoundError в связи с отсутствием файла"""
+    Item.PATH_TO_FILE_CSV = 'tests/data/test3.csv'
+    assert Item.instantiate_from_csv() == f"По указанному пути '{Item.PATH_TO_FILE_CSV}' файл item.csv отсутствует"
+
+
+def test_get_instantiate_csv_error():
+    """Ожидается обработка исключения InstantiateCSVError, так как файл поврежден"""
+    Item.PATH_TO_FILE_CSV = 'tests/data/test2.csv'
+    assert Item.instantiate_from_csv() == "Файл item.csv поврежден"
 
 
 def test_is_integer():
